@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+     >
+
+ <TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pn"
+    android:textSize="15sp"    
+    android:textColor="@android:color/white"
+    android:background="@android:color/black"
+    />
+
+ <EditText
+     android:id="@+id/phno"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:background="@android:color/darker_gray"
+     android:ems="10" >        
+ </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pin"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/pinno"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bOn"
+            android:id="@+id/bOn" />
+
+        <Button
+            android:id="@+id/bStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bStatus" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Off"
+            android:id="@+id/bOff" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="SMS log"
+        android:id="@+id/logWindow"
+        android:background="#ffa3a3a3" />
+
+</LinearLayout><!-- From: file:/E:/github/simpleOntechControl/app/src/main/res/layout/activity_main.xml -->

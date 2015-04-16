@@ -1,0 +1,7 @@
+*Ontech9030
+Units:
+1
+Temp:
+9;--
+Tstat:
+OFF
