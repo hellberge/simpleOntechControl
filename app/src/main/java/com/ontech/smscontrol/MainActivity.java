@@ -78,7 +78,8 @@ public class MainActivity extends Activity {
 	}
 
     public static void appendSMSLog(SmsMessage sms) {
-		if(PhoneNumberUtils.compare(sms.getOriginatingAddress(), etPhoneNo.toString())) {
+		if(PhoneNumberUtils.compare(sms.getOriginatingAddress(), etPhoneNo.getText().toString())) {
+            logWindow.append("\n");
 			logWindow.append(sms.getDisplayMessageBody());
 		}
   
