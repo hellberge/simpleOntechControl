@@ -1,19 +1,12 @@
 package com.ontech.smscontrol;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import android.telephony.SmsManager;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.telephony.SmsMessage;
-import android.telephony.PhoneNumberUtils;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.telephony.*;
+import android.view.*;
+import android.view.View.*;
+import android.widget.*;
 
 public class MainActivity extends Activity {
 	Button btnStatus;
@@ -23,6 +16,8 @@ public class MainActivity extends Activity {
     static TextView logWindow;
     SharedPreferences sharedPref;
 
+	private static final String SMS_DELIVERED = "SMS_DELIVERED";
+	private static final String SMS_SENT = "SMS_SENT";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +39,7 @@ public class MainActivity extends Activity {
                 String phoneNo = etPhoneNo.getText().toString();
 
                 try {
-
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, msg.toString(), null, null);
-                    Toast.makeText(getApplicationContext(), "Message Sent",
-                            Toast.LENGTH_LONG).show();
+                    sendSms(phoneNo, msg.toString());
                 } catch (Exception ex) {
                     Toast.makeText(getApplicationContext(),
                             ex.getMessage().toString(),
@@ -61,6 +52,16 @@ public class MainActivity extends Activity {
 		
 	}
 
+	private void sendSms(String phoneNo, String msg) {
+		PendingIntent piSend = PendingIntent.getBroadcast(this, 0, new Intent(SMS_SENT), 0);
+		PendingIntent piDelivered = PendingIntent.getBroadcast(this, 0, new Intent(SMS_DELIVERED), 0);
+		
+		SmsManager smsManager = SmsManager.getDefault();
+		smsManager.sendTextMessage(phoneNo, null, msg.toString(), piSend, piDelivered);
+		Toast.makeText(getApplicationContext(), "Message Sent",
+					   Toast.LENGTH_LONG).show();
+	}
+	
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -84,4 +85,9 @@ public class MainActivity extends Activity {
 		}
   
     }
+	
+	public static void appendSMSLog(String msg) {
+		logWindow.append("\n");
+		logWindow.append(msg);
+	}
 }

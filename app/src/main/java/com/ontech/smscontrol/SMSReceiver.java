@@ -14,6 +14,7 @@ import android.widget.TextView;
 public class SMSReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+		
         Object[] pdus=(Object[])intent.getExtras().get("pdus");
         SmsMessage shortMessage=SmsMessage.createFromPdu((byte[]) pdus[0]);
 
